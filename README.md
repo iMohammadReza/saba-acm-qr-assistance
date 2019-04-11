@@ -1,2 +1,3 @@
 # saba-executive-assistance-node
-sabacontest.ir executive assistance back-end written in Node.js and MongoDB
+Saba Contest executive assistance. To check contenstant for event parts with their ID cart QR code.
+Developed with Node.js, React.js and MongoDB
