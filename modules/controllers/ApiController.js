@@ -18,10 +18,10 @@ module.exports = new class ApiController extends Controller{
       phone: req.body.phone
     }).save((err) => {
       if(err)
-        res.json({success: false, error: err.errmsg})
+        res.status(400).json({success: false, error: err.errmsg})
       this.model.Contestant.find({}, (error, contestants) => {
         if(error)
-          res.json({success: false, error: error.errmsg})
+          res.status(400).json({success: false, error: error.errmsg})
         res.json({success: true, contestants})
       })
     })
@@ -36,16 +36,18 @@ module.exports = new class ApiController extends Controller{
 
     if(this.showValidationErrors(req, res)) 
         return;
-    let obj = {}
-    obj[req.body.type]=false
-    this.model.Contestant.findByIdAndUpdate(req.body.id, obj, (err) => {
-      if(err)
-        res.json({success: false, error: err.errmsg})
-      this.model.Contestant.find({}, (error, contestants) => {
-        if(error)
-          res.json({success: false, error: error.errmsg})
-        res.json({success: true, contestants})
-      })
+
+    this.model.Contestant.findById(req.body.id, (err, contestant) => {
+      if(err) throw err;
+      if(!contestant)
+        res.json({success: false, error: "user not found"})
+      else
+        if(contestant[req.body.type]) {
+          contestant[req.body.type] = false
+          contestant.save()
+          res.json({success: true, contestant})
+        } else
+          res.json({success: false, error: "item not found"})
     })
   }
 }
