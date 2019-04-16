@@ -25,12 +25,12 @@ class App extends Component {
         this.setState({
           result: `Name: ${data.name}`,
           id: data.id,
-          response: ""
+          error: "",
+          response: false
         })
       } else {
         this.setState({
-          error: "Invalid data",
-          response: ""
+          error: "Invalid data"
         })
       }
     }
@@ -49,7 +49,7 @@ class App extends Component {
   handleSubmit = (event) => {
     const {id, type} = this.state
     if(type && type !== "") {
-      axios.post('http://localhost:6679/api/v1/set', {
+      axios.post('https://sabaqr.liara.run/api/v1/set', {
         id: id,
         type: type
       })
@@ -57,7 +57,7 @@ class App extends Component {
         console.log(response)
         response = response.data
         if(response.success) {
-          this.setState({response: "Contestant currently have: Package: " + response.contestant.package + " / First Launch: " + response.contestant.first_day_launch + " / Second Launch: " + response.contestant.second_day_launch})
+          this.setState({result: false, response: "Contestant currently have: Package: " + response.contestant.package + " / Sabatalk: " + response.contestant.sabatalk + " / First Launch: " + response.contestant.first_day_launch + " / Second Day enter: " + response.contestant.second_day + " / Second Launch: " + response.contestant.second_day_launch + " / FathAbad enter: " + response.contestant.fatabad_login + " / FathAbad exit: " + response.contestant.fatabad_logout})
         } else
           this.setState({response: response.error})
       })
@@ -66,7 +66,7 @@ class App extends Component {
         this.setState({response: "Faced an error"})
       })
 
-      this.setState({result: false})
+      this.setState({error: "Processing...", response: ""})
     } else
       this.setState({error: "First select the type"})
     event.preventDefault()
@@ -88,8 +88,8 @@ class App extends Component {
               <option value="">Select</option>
               <option value="package">Package</option>
               <option value="sabatalk">Sabatalk</option>
-              <option value="first_day_launch">First dat launch</option>
-              <option value="second_day">Second day</option>
+              <option value="first_day_launch">First day launch</option>
+              <option value="second_day">Second day enter</option>
               <option value="second_day_launch">Second day launch</option>
               <option value="fatabad_login">FathAbad enter</option>
               <option value="fatabad_logout">FathAbad exit</option>
@@ -107,7 +107,7 @@ class App extends Component {
             }
           </form>
           {this.state.response &&
-            <p>Response:<br/>{this.state.response}</p>
+            <p style={{color:"#1976d2"}} >Response:<br/>{this.state.response}</p>
           }
         </div>
       </div>
