@@ -6,6 +6,7 @@ const { controller } = config.path
 const ApiController = require(`${controller}/ApiController`)
 
 router.post('/add' , ApiController.add.bind(ApiController))
+router.put('/add' , ApiController.bulkAdd.bind(ApiController))
 router.post('/set' , ApiController.set.bind(ApiController))
 
 module.exports = router;

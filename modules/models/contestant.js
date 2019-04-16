@@ -6,8 +6,12 @@ const ContestantSchema = new Schema({
     university : { type : String , required : true},
     phone : { type: String, required : true, unique : true},
     package : { type: Boolean, required : true, default: true},
+    sabatalk : { type: Boolean, required : true, default: true},
     first_day_launch : { type: Boolean, required : true, default: true},
-    second_day_launch : { type: Boolean, required : true, default: true}
+    second_day : { type: Boolean, required : true, default: true},
+    second_day_launch : { type: Boolean, required : true, default: true},
+    fatabad_login : { type: Boolean, required : true, default: true},
+    fatabad_logout : { type: Boolean, required : true, default: true},
 });
 
 module.exports = mongoose.model('Contestant' , ContestantSchema)

@@ -14,9 +14,8 @@ class App extends Component {
   }
 
   componentWillMount() {
-    if (prompt("Enter password") !== "mamrez") {
-      this.setState({allow: true})
-    }
+    if (prompt("Enter password") !== "mamrez")
+      window.location = "https://sabacontest.ir/";
   }
 
   handleScan = data => {
@@ -74,44 +73,45 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.allow)
-      return null
-    else
-      return (
-        <div className="App">
-          <QrReader
-            delay={300}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            style={{ width: '100%'}}
-          />
-          <div style={{margin: '2%'}} >
-            <form onSubmit={this.handleSubmit}>
-              <br/>
-              <select value={this.props.type} onChange={this.handleChange}>
-                <option value="">Select</option>
-                <option value="package">Package</option>
-                <option value="first_day_launch">First launch</option>
-                <option value="second_day_launch">Second launch</option>
-              </select>
-              {this.state.result === false ?
-                <p>Waiting to scan...</p>
-              :
-                <div>
-                  <br/>
-                  <p>{this.state.result}</p>
-                  <p>{this.state.error}</p>
-                  <br/>
-                  <input className="button" type="submit" value="Submit"  />
-                </div>
-              }
-            </form>
-            {this.state.response &&
-              <p>Response:<br/>{this.state.response}</p>
+    return (
+      <div className="App">
+        <QrReader
+          delay={300}
+          onError={this.handleError}
+          onScan={this.handleScan}
+          style={{ width: '100%'}}
+        />
+        <div style={{margin: '2%'}} >
+          <form onSubmit={this.handleSubmit}>
+            <br/>
+            <select value={this.props.type} onChange={this.handleChange}>
+              <option value="">Select</option>
+              <option value="package">Package</option>
+              <option value="sabatalk">Sabatalk</option>
+              <option value="first_day_launch">First dat launch</option>
+              <option value="second_day">Second day</option>
+              <option value="second_day_launch">Second day launch</option>
+              <option value="fatabad_login">FathAbad enter</option>
+              <option value="fatabad_logout">FathAbad exit</option>
+            </select>
+            {this.state.result === false ?
+              <p>Waiting to scan...</p>
+            :
+              <div>
+                <br/>
+                <p>{this.state.result}</p>
+                <p>{this.state.error}</p>
+                <br/>
+                <input className="button" type="submit" value="Submit"  />
+              </div>
             }
-          </div>
+          </form>
+          {this.state.response &&
+            <p>Response:<br/>{this.state.response}</p>
+          }
         </div>
-      )
+      </div>
+    )
   }
 }
 
