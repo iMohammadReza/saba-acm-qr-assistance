@@ -1,4 +1,5 @@
 const Controller = require('./Controller')
+const config = require('../../react-client/src/config.json')
 
 module.exports = new class ApiController extends Controller{
 
@@ -60,7 +61,9 @@ module.exports = new class ApiController extends Controller{
   set(req, res) {
     req.checkBody('id' , 'ID is empty.').notEmpty()
     req.checkBody('type' , 'Type in empty.').notEmpty()
-    req.checkBody('type' , 'Type is not valid.').isIn(["package", "sabatalk", "first_day_launch", "second_day", "second_day_launch", "fatabad_login", "fatabad_logout"])
+    let items = []
+    config.items.map(item=>items.push(item.value))
+    req.checkBody('type' , 'Type is not valid.').isIn(items)
 
     this.escapeAndTrim(req , 'id type')
 

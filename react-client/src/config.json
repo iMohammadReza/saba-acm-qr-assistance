@@ -1,0 +1,13 @@
+{
+    "password": null,
+    "redirect": "https://sabacontest.ir/",
+    "items": [
+        { "value": "package", "name": "Package"},
+        { "value": "sabatalk", "name": "Sabatalk"},
+        { "value": "first_day_launch", "name": "First day launch"},
+        { "value": "second_day", "name": "Second day enter"},
+        { "value": "second_day_launch", "name": "Second day launch"},
+        { "value": "fatabad_login", "name": "FathAbad enter"},
+        { "value": "fatabad_logout", "name": "FathAbad exit"}
+    ]
+}

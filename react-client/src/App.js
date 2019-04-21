@@ -2,6 +2,8 @@ import './App.css';
 import React, { Component } from 'react'
 import QrReader from 'react-qr-reader'
 import axios from 'axios'
+import config from './config.json'
+require('dotenv').config()  
 
 class App extends Component {
   state = {
@@ -14,8 +16,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    if (prompt("Enter password") !== "mamrez")
-      window.location = "https://sabacontest.ir/";
+    if(config.password)
+      if (prompt("Enter password") !== config.password)
+        window.location = config.redirect;
   }
 
   handleScan = data => {
@@ -86,13 +89,9 @@ class App extends Component {
             <br/>
             <select value={this.props.type} onChange={this.handleChange}>
               <option value="">Select</option>
-              <option value="package">Package</option>
-              <option value="sabatalk">Sabatalk</option>
-              <option value="first_day_launch">First day launch</option>
-              <option value="second_day">Second day enter</option>
-              <option value="second_day_launch">Second day launch</option>
-              <option value="fatabad_login">FathAbad enter</option>
-              <option value="fatabad_logout">FathAbad exit</option>
+              {config.items.map(item=>{
+                return <option key={item.value} value={item.value}>{item.name}</option>
+              })}
             </select>
             {this.state.result === false ?
               <p>Waiting to scan...</p>
