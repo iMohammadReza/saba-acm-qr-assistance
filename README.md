@@ -1,5 +1,5 @@
 # Saba ACM QR code event assistance
-### Designed for event to handle participator and event items.
+### Designed for event to handle participators and event items.
 
 Saba Contest executive assistance to check contenstant for each event parts with their ID cart QR code.
 Developed with Node.js, React.js and MongoDB.
@@ -19,5 +19,11 @@ Developed with Node.js, React.js and MongoDB.
 1. `npm install` and `npm start` to install and start node server
 2. `cd react-cli`, `npm install` and `npm run build` to build production release that node server requires.
 ## Todo
+1. View all participators status
+2. View participatorstatus by search
+3. Desktop and tablet responsive
+4. Add PWA
+##
 Pull requests, feedbacks and suggestions are welcome!
+
 Contact me on [@telegram](https://t.me/imohammadreza) or [@twitter](https://twitter.com/iMohammadReza_).
