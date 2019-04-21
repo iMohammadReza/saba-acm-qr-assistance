@@ -1,5 +1,5 @@
 # Saba ACM QR code event assistance
-### Designed for event to handle participators and event items.
+### Designed for events to handle participators and event items.
 
 Saba Contest executive assistance to check contenstant for each event parts with their ID cart QR code.
 Developed with Node.js, React.js and MongoDB.
